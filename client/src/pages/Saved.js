@@ -57,7 +57,7 @@ class Books extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          <Col size="md-12">
             <Jumbotron>
               <h1>Your Saved Books</h1>
             </Jumbotron>

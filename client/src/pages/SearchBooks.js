@@ -7,8 +7,6 @@ import { Col, Row, Container } from "../components/Grid";
 import SearchForm from "../components/SearchForm";
 import SearchResult from "../components/SearchResult"
 
-// import { List, ListItem } from "../components/List";
-// import { Input, TextArea, FormBtn } from "../components/Form";
 
 class SearchBooks extends Component {
   state = {
@@ -18,23 +16,9 @@ class SearchBooks extends Component {
     message: ""
   };
 
-  componentDidMount() {
-    this.loadBooks();
-  }
-
-  // loadBooks = () => {
-  //   API.getBooks()
-  //     .then(res =>
-  //       this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
-
-  // deleteBook = id => {
-  //   API.deleteBook(id)
-  //     .then(res => this.loadBooks())
-  //     .catch(err => console.log(err));
-  // };
+  // componentDidMount() {
+  //   this.loadBooks();
+  // }
 
   handleInputChange = event => {
     this.setState({ search: event.target.value });
@@ -42,8 +26,9 @@ class SearchBooks extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.getBookSearch(this.state.search)
+    console.log(this.state)
+    if (this.state.search) {
+      API.getGoogleSearchBooks(this.state.search)
         .then(res => {
           if (res.data.item === "error") {
             throw new Error(res.data.items);
@@ -71,6 +56,7 @@ class SearchBooks extends Component {
         })
         .catch (err => this.setState({ error: err.items }));
   }
+}
 
   handleSavedButton = event => {
     // console.log(event)
@@ -82,7 +68,7 @@ class SearchBooks extends Component {
       .then(this.setState({ message: alert("Your book is saved") }))
       .catch(err => console.log(err))
   }
-}
+
 
   render() {
     return (
