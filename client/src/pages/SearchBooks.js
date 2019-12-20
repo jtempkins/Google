@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
+import Google from "../utils/Google";
 // import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import SearchForm from "../components/SearchForm";
@@ -28,7 +29,7 @@ class SearchBooks extends Component {
     event.preventDefault();
     console.log(this.state)
     if (this.state.search) {
-      API.getGoogleSearchBooks(this.state.search)
+      Google.getGoogleSearchBooks(this.state.search)
         .then(res => {
           if (res.data.item === "error") {
             throw new Error(res.data.items);
